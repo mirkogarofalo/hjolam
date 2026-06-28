@@ -114,9 +114,16 @@ text-align: center;
 
 #listsave {
     background-color: #89a367;
-    font-size: 12pt;
+    font-size: 16pt;
     padding: 6px;
     border-radius: 3px;
+}
+
+#stopp {
+background-color: #89a367;
+font-size: 16pt;
+padding: 6px;
+border-radius: 3px;
 }
 
 #question {

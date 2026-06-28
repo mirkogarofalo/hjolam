@@ -5,15 +5,19 @@ const listBtn = document.getElementById("listsave");
 const reductBtn = document.getElementById("noreduct");
 spinBtn.disabled = true;
 const secspace = document.getElementById("seconds");
+const listspace = document.getElementById("names");
 secspace.value = 10;
+let counterx;
 
 // 1. Array of lemmas you want to use
-const lemmas = ["hestur", "kona", "bók", "barn", "maður", "skóli", "umsókn", "tré", "hundur", "skór", "stærð", "hurð", "hús", "pabbi", "mamma", "móðir", "faðir", "sonur", "dóttir", "mál", "safi", "bolur", "hlekkur", "hnykkur", "vöxtur", "fjall", "vist", "lest", "list", "kirkja", "mynd", "bíómynd", "stund", "tími", "tæki", "bjór", "æfing", "lýsing"];
+const lemmas = ["hestur", "kona", "bók", "barn", "maður", "skóli", "umsókn", "tré", "hundur", "skór", "stærð", "hurð", "hús", "pabbi", "mamma", "móðir", "faðir", "sonur", "dóttir", "mál", "safi", "bolur", "hlekkur", "hnykkur", "vöxtur", "fjall", "vist", "lest", "list", "kirkja", "mynd", "bíómynd", "stund", "tími", "tæki", "bjór", "æfing", "lýsing", "frændi", "frænka", "bolti", "hilla", "læknir", "hitamælir", "hjól", "blómapottur", "sófi", "strákur", "stelpa", "ferðataska", "vörn"];
 
 // 2. Array of cases to pick from randomly
-const cases = ["NFET", "ÞFET", "ÞGFET", "EFET", "NFETgr", "ÞFETgr", "ÞGFETgr", "EFETgr", "NFFT", "ÞFFT", "ÞGFFT", "EFFT", "NFFTgr", "ÞFFTgr", "ÞGFFTgr", "EFFTgr"];
+const cases = ["ÞFET", "ÞGFET", "EFET", "NFETgr", "ÞFETgr", "ÞGFETgr", "EFETgr", "NFFT", "ÞFFT", "ÞGFFT", "EFFT", "NFFTgr", "ÞFFTgr", "ÞGFFTgr", "EFFTgr"];
 
 const tickSound = new Audio('tick.mp3');
+const beepSound = new Audio('beep.mp3');
+const alarmSound = new Audio('alarm.mp3');
 let lastSegmentIndex = -1;
 let animationFrameId = null;
 let winningIndex = null;
@@ -25,6 +29,16 @@ let inflectedWord;
 function playTick() {
     tickSound.currentTime = 0;
     tickSound.play().catch(err => console.log("Hljóð ræstist ekki:", err));
+}
+
+function playBeep() {
+    beepSound.currentTime = 0;
+    beepSound.play().catch(err => console.log("Hljóð ræstist ekki:", err));
+}
+
+function playAlarm() {
+    alarmSound.currentTime = 0;
+    alarmSound.play().catch(err => console.log("Hljóð ræstist ekki:", err));
 }
 
 let options = [""];
@@ -49,7 +63,6 @@ async function getInflectedForm(lemma, targetCase) {
         if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
         const data = await response.json();
-        console.log(data);
 
         // BÍN returns an array of matching word objects.
         // We take the first match and its 'beyging' (inflection) array.
@@ -58,7 +71,6 @@ async function getInflectedForm(lemma, targetCase) {
         }
 
         const paradigm = data[0].bmyndir;
-        console.log(paradigm);
 
         // Search the paradigm for the correct tag
         // item.g contains strings like "KK-NFET", "NFET", or "NFETgr"
@@ -84,13 +96,11 @@ function loadnames() {
     options.length = 0;
     winningIndex = null;
     options = [...linesArray];
-    console.log(options);
     colors.length = 0;
     for (let i = 0; i < options.length; i++) {
         let getRandomHexColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
         colors.push(getRandomHexColor);
     }
-    console.log(colors);
     numSegments = options.length;
     segmentAngle = (2 * Math.PI) / numSegments;
     drawWheel();
@@ -103,8 +113,6 @@ function drawWheel() {
     if (options.length > 1 & winningIndex !== null & reductBtn.checked == false) {
         options.splice(winningIndex,1);
         colors.splice(winningIndex,1);
-        console.log(options);
-        console.log(colors);
         numSegments = options.length;
         segmentAngle = (2 * Math.PI) / numSegments;
     }
@@ -159,6 +167,10 @@ function checkTick() {
     animationFrameId = requestAnimationFrame(checkTick);
 }
 
+function stoptimer() {
+    counterx = 0;
+}
+
 function spinWheel() {
     drawWheel();
     if (isSpinning) return;
@@ -167,6 +179,7 @@ function spinWheel() {
     listBtn.disabled = true;
     reductBtn.disabled = true;
     secspace.disabled = true;
+    listspace.disabled = true;
     const extraSpins = Math.floor(Math.random() * 360);
     const spinDegrees = (6 * 360) + extraSpins;
 
@@ -179,30 +192,32 @@ function spinWheel() {
 function countsec() {
     clearInterval(countdownInterval);
     document.getElementById('correctanswer').innerHTML = "---";
-    let i = parseInt(document.getElementById("seconds").value);
+    counterx = parseInt(document.getElementById("seconds").value);
     const counterDisplay = document.getElementById("seccounter");
 
     countdownInterval = setInterval(() => {
-        i--;
-        if (i > 1) {
-            counterDisplay.innerHTML = i + " sekúndur eftir";
-            playTick();
-        } else if (i === 1) {
-            counterDisplay.innerHTML = i + " sekúnda eftir";
-            playTick();
+        counterx--;
+        if (counterx > 1) {
+            counterDisplay.innerHTML = counterx + " sekúndur eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+            playBeep();
+        } else if (counterx === 1) {
+            counterDisplay.innerHTML = counterx + " sekúnda eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+            playBeep();
         } else {
             counterDisplay.innerHTML = "Tíminn rann út!";
             clearInterval(countdownInterval);
+            playAlarm();
             document.getElementById('correctanswer').innerHTML = `Rétt svar: <strong>${inflectedWord}</strong>`;
             spinBtn.disabled = false;
             listBtn.disabled = false;
             reductBtn.disabled = false;
             secspace.disabled = false;
+            listspace.disabled = false;
         }
     }, 1000);
 
-    if (i > 1) counterDisplay.innerHTML = i + " sekúndur eftir";
-    else if (i === 1) counterDisplay.innerHTML = i + " sekúnda eftir";
+    if (counterx > 1) counterDisplay.innerHTML = counterx + " sekúndur <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+    else if (counterx === 1) counterDisplay.innerHTML = counterx + " sekúnda <button id='stopp' onclick='stoptimer()'>Stopp</button>";
 }
 
 async function handleSpinEnd() {
@@ -219,7 +234,7 @@ async function handleSpinEnd() {
     const winnerName = options[winningIndex];
 
     // 1. Update the UI with the wheel winner immediately
-    document.getElementById('selected').innerHTML = `Nemandi: ${winnerName}`;
+    document.getElementById('selected').innerHTML = `Nemandi: <b>${winnerName}</b>`;
 
     // 2. Select a random lemma and case from your arrays
     randomLemma = lemmas[Math.floor(Math.random() * lemmas.length)];
@@ -232,10 +247,10 @@ async function handleSpinEnd() {
     inflectedWord = await getInflectedForm(randomLemma, randomCase);
 
     // Map the tag back to a friendly display string for the user
-    const caseNames = { "NFET": "nefnifalli eintölu, án greinis", "ÞFET": "þolfalli eintölu, án greinis", "ÞGFET": "þágufalli eintölu, án greinis", "EFET": "eignarfalli eintölu, án greinis", "NFETgr": "nefnifalli eintölu, með greini", "ÞFETgr": "þolfalli eintölu, með greini", "ÞGFETgr": "þágufalli eintölu, með greini", "EFETgr": "eignarfalli eintölu, með greini", "NFFT": "nefnifalli fleirtölu, án greinis", "ÞFFT": "þolfalli fleirtölu, án greinis", "ÞGFFT": "þágufalli fleirtölu, án greinis", "EFFT": "eignarfalli fleirtölu, án greinis", "NFFTgr": "nefnifalli fleirtölu, með greini", "ÞFFTgr": "þolfalli fleirtölu, með greini", "ÞGFFTgr": "þágufalli fleirtölu, með greini", "EFFTgr": "eignarfalli fleirtölu, með greini" };
+    const caseNames = { "ÞFET": "þolfalli eintölu, án greinis", "ÞGFET": "þágufalli eintölu, án greinis", "EFET": "eignarfalli eintölu, án greinis", "NFETgr": "nefnifalli eintölu, með greini", "ÞFETgr": "þolfalli eintölu, með greini", "ÞGFETgr": "þágufalli eintölu, með greini", "EFETgr": "eignarfalli eintölu, með greini", "NFFT": "nefnifalli fleirtölu, án greinis", "ÞFFT": "þolfalli fleirtölu, án greinis", "ÞGFFT": "þágufalli fleirtölu, án greinis", "EFFT": "eignarfalli fleirtölu, án greinis", "NFFTgr": "nefnifalli fleirtölu, með greini", "ÞFFTgr": "þolfalli fleirtölu, með greini", "ÞGFFTgr": "þágufalli fleirtölu, með greini", "EFFTgr": "eignarfalli fleirtölu, með greini" };
 
     // 4. Update the final UI text output
-    document.getElementById('wordquest').innerHTML = `Beygðu orðið <em>${randomLemma}</em><br>í <strong>${caseNames[randomCase]}</strong>`;
+    document.getElementById('wordquest').innerHTML = `Beygðu nafnorðið <em>${randomLemma}</em><br>í <strong>${caseNames[randomCase]}</strong>`;
     countsec();
 }
 
