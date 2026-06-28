@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hjólameistarinn 1.0.0 - Eftir Mirko Garofalo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="leftpanel"><div id="groupnem"><h2>Nemendalisti</h2><textarea id="names"></textarea><br><input id="noreduct" type="checkbox">Ekki eyða völdum nemendum úr hjólinu</input><br><br><input id="seconds" type="input" maxlength="2"> sekúndur</input><br><br><button id="listsave" onclick="loadnames()">Save list</button></div>
+    <div class="wheel-container">
+        <!-- The pointer arrow indicating the winning slice -->
+        <div class="pointer"></div>
+
+        <!-- The visual canvas wheel -->
+        <canvas id="wheelCanvas" width="400" height="400"></canvas>
+
+        <!-- Action trigger -->
+        <button id="spinBtn">SNÚÐU</button>
+    </div></div><div id="rightpanel"><div id="titleapp"><h1>HJÓLAMEISTARINN</h1><h3>eftir Mirko Garofalo - mig@hi.is - Útg. 1.0.0</h3></div><div id="question"><p id="selected">Nemandi: ---</p><p id="wordquest">Snúðu hjólinu til að fá spurningu</p><hr><p id="seccounter"></p><p id="correctanswer">---</p></div></div>
+
+    <script src="wheel.js"></script>
+</body>
+</html>

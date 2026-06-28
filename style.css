@@ -1,0 +1,150 @@
+body {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: #aaaaaa;
+    font-family: sans-serif;
+}
+
+.wheel-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+#leftpanel {
+    position: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #eeeeee;
+    border-radius: 7px;
+}
+
+#rightpanel {
+position: flex;
+flex-direction: column;
+padding: 10px;
+background-color: #eeeeee;
+border-radius: 7px;
+}
+
+/* The visual pointer indicating the top selection */
+.pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #449900;
+    z-index: 10;
+}
+
+/* Target for rotation modifications via JavaScript */
+#wheelCanvas {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+box-shadow: 0 0 20px rgba(0,0,0,0.4);
+transition: transform 4s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+#spinBtn {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 70px;
+height: 70px;
+border-radius: 50%;
+background-color: #fff;
+border: 4px solid #34495e;
+font-weight: bold;
+cursor: pointer;
+z-index: 5;
+box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#spinBtn:active {
+transform: translate(-50%, -50%) scale(0.95);
+}
+
+textarea {
+    width: 385px;
+    height: 180px;
+}
+
+#groupnem {
+    position: flex;
+    width: 400px;
+    height: 380px;
+    padding: 0px 0px 20px 0px;
+}
+
+#correctanswer {
+    font-size: 40px;
+    padding: 17px;
+    background-color: #00aa00;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#wordquest {
+    font-size: 40px;
+    padding: 17px;
+    background-color: #fcabfc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#selected {
+    font-size: 50px;
+    color: #ff0000;
+}
+
+#seccounter {
+font-size: 40px;
+color: #0000ff;
+text-align: center;
+}
+
+#listsave {
+    background-color: #89a367;
+    font-size: 12pt;
+    padding: 6px;
+    border-radius: 3px;
+}
+
+#question {
+    width: 900px;
+    height: 580px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: white;
+}
+
+#seconds {
+    width: 20px;
+}
+
+#titleapp {
+    width: 900px;
+    height: 140px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 60px;
+    color: #696935;
+    margin-bottom: -10px;
+    margin-top: 20px;
+}
