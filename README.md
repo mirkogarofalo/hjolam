@@ -4,3 +4,4 @@ _Hjólameistarinn_ (‘the wheelmaster’) is a webapp for learners of Icelandic
 Features:
 - Ability to choose which word groups are tested (nouns, adjectives and/or verbs)
 - Ability to remove automatically from the wheel every participant that has already responded (this is to ensure that every participants get a chance to answer once to a question)
+- Data on inflectional forms are extracted from the _The Database of Icelandic Morphology_ (http://bin.arnastofnun.is)
