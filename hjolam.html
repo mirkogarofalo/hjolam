@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hjólameistarinn 1.0.0 - Eftir Mirko Garofalo</title>
+    <title>Hjólameistarinn 1.0.0 - Mirko Garofalo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="leftpanel"><div id="groupnem"><h2>Nemendalisti</h2><textarea id="names"></textarea><br><input id="noreduct" type="checkbox">Ekki eyða völdum nemendum úr hjólinu</input><br><br><input id="seconds" type="input" maxlength="2"> sekúndur</input><br><br><button id="listsave" onclick="loadnames()">Vista lista</button></div>
+<div class="main-content">
+<div id="rightpanel"><div id="titleapp"><img class="inlinebl" src="hjolam.png" width="95" height="95"><h1 class="inlinebl">Hjólameistarinn</h1><p class="menus">Mirko Garofalo - mig@hi.is - Útg. 1.0.0<span id="about" onclick="activeAbt()">Um</span><span id="instruct" onclick="activeDescr()">Leiðbeiningar</span></p></div>
+    <div id="question"><div id="descr"><p align="justify"><i>Hjólameistarinn</i> er vafraforrit til að þjálfa nemendur í íslensku sem öðru máli í beygingu sagna, nafnorða og lýsingarorða. Til þess að nota forritið þarf fyrst og fremst að skrifa lista af nöfnum nemenda eða þátttakenda í textaboxið hægra megin og smella svo á <i>Vista lista</i>. Þið þurfið að búa til nýja línu fyrir hvert nafn í textaboxinu. Eftir að þið vistið birtast nöfnin á hjólinu.</p>
+    <p align="justify">Til að snúa hjólinu smellið á <i>Snúðu</i>. Nafn verður valið og svo mun birtast spurning vinstra megin. Þið getið ákveðið hvaða orðflokk þið viljið þjálfa með því að haka við (eða afhaka) viðeigandi orðflokk á aðalsvæði spurninga. Þið getið ákveðið fyrirfram hvað fá nemendur margar sekúndur til að svara munnlega (10 sekúndur eru forstilltar). Þegar spurningin birtist á skjánum byrjar niðurtalning. Hægt er að stoppa niðurtalningu með því að smella á <i>Stopp</i> á aðalsvæði spurninga. Ef tíminn rennur út, eða ef búið er að smella á <i>Stopp</i> þá birtist rétt svar.</p>
+    <p align="justify">Ef þið viljið að enginn þátttakandi eigi að svara tvisvar þá þurfið að afvirkja <i>Ekki eyða völdum nemendum úr hjólinu</i> á hægra spjaldi. Þannig verður hver þátttakandi sem verður valinn eyðilagður af hjólinu um leið og þið snúið hjólinu aftur.</p>
+    <p align="justify">Gögn um beygingarmyndir eru sótt af <i>Beygingarlýsingu íslensks nútímamáls</i> (<a href="http://bin.arnastofnun.is">http://bin.arnastofnun.is</a>).</p>
+     <p id="cl1" onclick="activeGame()">Loka</p></div><div id="abt"><p align="justify"><img id="mig" src="mig.jpg">Mirko Garofalo er doktor í íslenskri málfræði og aðjunkt í íslensku sem öðru máli við Háskóla Íslands. Mirko hefur kennt íslensku í fleiri en tíu ár, bæði í Háskóla Íslands og tungumálaskólum á borð við Mími Símenntun. Áhugasvið hans eru málvísindi, kennsla íslensku sem annars máls og máltækni.</p><p align="justify">Ef þið hafið fyrirspurnir eða athugasemdir hafið samband með því að senda póst á <a href="mailto:mig@hi.is">mig@hi.is</a>.</p> <p id="cl2" onclick="activeGame()">Loka</p></div><div id="maingame"><p class="optflokk" align=right><b>Orðflokkar:</b><input id="nouns" type="checkbox" onclick="recalcwordgroups()" checked>Nafnorð</input><input id="adjectives" type="checkbox" onclick="recalcwordgroups()">Lýsingarorð</input><input id="verbs" type="checkbox" onclick="recalcwordgroups()">Sagnorð</input></p><p id="selected">Nemandi: ---</p><p id="wordquest">Snúðu hjólinu til að fá spurningu</p><table><tr><td width="450"><p id="seccounter">---</p></td><td width="450"><p id="correctanswer">---</p></tr></table></div></div></div>
+<div id="leftpanel"><div id="groupnem"><p class="h2t">Nemendalisti<span id="buttleft"><button id="listsave" onclick="loadnames()">Vista lista</button></span></p><textarea id="names"></textarea><br><input id="noreduct" type="checkbox" checked>Ekki eyða völdum nemendum úr hjólinu</input><br><br><input id="seconds" type="input" maxlength="2"> sekúndur</input></div>
     <div class="wheel-container">
         <!-- The pointer arrow indicating the winning slice -->
         <div class="pointer"></div>
 
         <!-- The visual canvas wheel -->
-        <canvas id="wheelCanvas" width="400" height="400"></canvas>
+        <canvas id="wheelCanvas" width="350" height="350"></canvas>
 
         <!-- Action trigger -->
         <button id="spinBtn">SNÚÐU</button>
-    </div></div><div id="rightpanel"><div id="titleapp"><h1>HJÓLAMEISTARINN</h1><h3>eftir Mirko Garofalo - mig@hi.is - Útg. 1.0.0</h3></div><div id="question"><p id="selected">Nemandi: ---</p><p id="wordquest">Snúðu hjólinu til að fá spurningu</p><hr><p id="seccounter"></p><p id="correctanswer">---</p></div></div>
-
+    </div></div></div>
+    <footer class="footer">
+        <p>2026 © Mirko Garofalo - mig@hi.is - Gögn um beygingarmyndir sótt úr <i>Beygingarlýsingu íslensks nútímamáls</i> (<a href="http://bin.arnastofnun.is">http://bin.arnastofnun.is</a>)</p>
+    </footer>
     <script src="wheel.js"></script>
 </body>
 </html>
