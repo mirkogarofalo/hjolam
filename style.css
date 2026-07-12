@@ -46,7 +46,6 @@ background-color: #eeeeee;
 border-radius: 7px;
 }
 
-/* The visual pointer indicating the top selection */
 .pointer {
     position: absolute;
     top: -20px;
@@ -60,7 +59,6 @@ border-radius: 7px;
     z-index: 10;
 }
 
-/* Target for rotation modifications via JavaScript */
 #wheelCanvas {
 width: 100%;
 height: 100%;
@@ -237,3 +235,207 @@ float: right;
 margin: 0px 0px 0px 20px;
 }
 
+@media (max-width: 768px) {
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        max-width: 100vw;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    #rightpanel {
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 1;
+    float: none !important;
+    box-sizing: border-box;
+    }
+
+    #titleapp {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    }
+
+    #titleapp .menus {
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    }
+
+    #descr, #abt, #maingame {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 10px !important;
+    }
+
+    #question {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 380px;
+    box-sizing: border-box;
+    padding: 10px !important;
+    overflow: scroll;
+
+    }
+
+    #maingame table {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-top: 15px;
+    }
+
+    #maingame tbody {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 10px;
+    }
+
+    #maingame tr {
+    display: flex !important;
+    width: 100% !important;
+    }
+
+    #maingame td {
+    display: block !important;
+    flex: 1 !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    box-sizing: border-box;
+    padding: 0 !important;
+    }
+
+    #correctanswer {
+    font-size: 23px;
+    padding: 10px;
+    background-color: #00aa00;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    }
+
+    #wordquest {
+    font-size: 23px;
+    padding: 10px;
+    background-color: #fcabfc;
+    border-radius: 8px;
+    text-align: center;
+    }
+
+    #selected {
+    font-size: 23px;
+    color: #ff0000;
+    }
+
+    #seccounter {
+    font-size: 23px;
+    padding: 10px;
+    background-color: #eeeeee;
+    color: #00f;
+    border-radius: 8px;
+    text-align: center;
+    }
+
+    #seccounter, #correctanswer {
+    width: 100% !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    text-align: center;
+    }
+
+    #leftpanel {
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 2;
+    float: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    }
+
+    #groupnem {
+    width: 50% !important;
+    max-width: 50% !important;
+    box-sizing: border-box;
+    }
+
+    #names {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    height: 120px;
+    }
+
+    .wheel-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        width: 220px !important;
+        height: 220px !important;
+        max-width: 100% !important;
+        margin: 10px auto !important;
+        float: none !important;
+    }
+
+    #wheelCanvas {
+    width: 220px !important;
+    height: 220px !important;
+    display: block !important;
+    margin: 0 auto !important;
+    }
+
+    .pointer {
+        position: absolute !important;
+        top: -20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 30 !important;
+    }
+
+    #spinBtn {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 40 !important;
+
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 11px !important;
+    line-height: 65px !important;
+    text-align: center !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .footer {
+        order: 3;
+        width: 100% !important;
+        box-sizing: border-box;
+        font-size: 11px;
+        text-align: center;
+        padding: 10px;
+    }
+}
