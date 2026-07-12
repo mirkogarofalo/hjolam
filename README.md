@@ -1,2 +1,2 @@
 # Hjólameistarinn
-Hjólameistarinn - In-class quiz about the inflection of nouns, verbs, adjectives
+_Hjólameistarinn_ (‘the wheelmaster’) is a webapp for learners of Icelandic as a second language and tests their knowledge of inflection of nouns, verbs and adjectives in a quiz format. The mechanism of the app is similar to a Wheel of fortune game: a participant is picked randomly, and a question appears about a specific form of a verb, adjective or noun. The participants has a set number of seconds to respond orally.
