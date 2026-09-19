@@ -1,3 +1,5 @@
+// Hjólameistarinn 1.1.0 - Mirko Garofalo (mig@hi.is)
+
 const canvas = document.getElementById("wheelCanvas");
 const ctx = canvas.getContext("2d");
 const spinBtn = document.getElementById("spinBtn");
@@ -287,10 +289,10 @@ function countsec() {
     countdownInterval = setInterval(() => {
         counterx--;
         if (counterx > 1) {
-            counterDisplay.innerHTML = counterx + " sekúndur eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+            counterDisplay.innerHTML = counterx + " sekúndur eftir <span class='sekund'><button class='menubutton' id='stopp' onclick='stoptimer()'>Stopp</button></span>";
             playBeep();
         } else if (counterx === 1) {
-            counterDisplay.innerHTML = counterx + " sekúnda eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+            counterDisplay.innerHTML = counterx + " sekúnda eftir <span class='sekund'><button class='menubutton' id='stopp' onclick='stoptimer()'>Stopp</button></span>";
             playBeep();
         } else {
             counterDisplay.innerHTML = "Tíminn rann út!";
@@ -305,8 +307,8 @@ function countsec() {
         }
     }, 1000);
 
-    if (counterx > 1) counterDisplay.innerHTML = counterx + " sekúndur eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
-    else if (counterx === 1) counterDisplay.innerHTML = counterx + " sekúnda eftir <button id='stopp' onclick='stoptimer()'>Stopp</button>";
+    if (counterx > 1) counterDisplay.innerHTML = counterx + " sekúndur eftir <span class='sekund'><button class='menubutton' id='stopp' onclick='stoptimer()'>Stopp</button></span>";
+    else if (counterx === 1) counterDisplay.innerHTML = counterx + " sekúnda eftir <span class='sekund'><button class='menubutton' id='stopp' onclick='stoptimer()'>Stopp</button></span>";
 }
 
 async function handleSpinEnd() {
@@ -342,7 +344,7 @@ async function quiznouns() {
 
     inflectedWord = await getInflectedFormNoun(randomLemma, randomCase);
 
-    const caseNames = { "ÞFET": "þolfalli eintölu, án greinis", "ÞGFET": "þágufalli eintölu, án greinis", "EFET": "eignarfalli eintölu, án greinis", "NFETgr": "nefnifalli eintölu, með greini", "ÞFETgr": "þolfalli eintölu, með greini", "ÞGFETgr": "þágufalli eintölu, með greini", "EFETgr": "eignarfalli eintölu, með greini", "NFFT": "nefnifalli fleirtölu, án greinis", "ÞFFT": "þolfalli fleirtölu, án greinis", "ÞGFFT": "þágufalli fleirtölu, án greinis", "EFFT": "eignarfalli fleirtölu, án greinis", "NFFTgr": "nefnifalli fleirtölu, með greini", "ÞFFTgr": "þolfalli fleirtölu, með greini", "ÞGFFTgr": "þágufalli fleirtölu, með greini", "EFFTgr": "eignarfalli fleirtölu, með greini" };
+    const caseNames = { "ÞFET": "þf. et., án greinis", "ÞGFET": "þgf. et., án greinis", "EFET": "ef. et., án greinis", "NFETgr": "nf. et., með greini", "ÞFETgr": "þf. et., með greini", "ÞGFETgr": "þgf. et., með greini", "EFETgr": "ef. et., með greini", "NFFT": "nf. ft., án greinis", "ÞFFT": "þf. ft., án greinis", "ÞGFFT": "þgf. ft., án greinis", "EFFT": "ef. ft., án greinis", "NFFTgr": "nf. ft., með greini", "ÞFFTgr": "þf. ft., með greini", "ÞGFFTgr": "þgf. ft., með greini", "EFFTgr": "ef. ft., með greini" };
 
     document.getElementById('wordquest').innerHTML = `Beygðu nafnorðið <em>${randomLemma}</em><br>í <strong>${caseNames[randomCase]}</strong>`;
     countsec();
@@ -357,7 +359,7 @@ async function quizadjs() {
 
     inflectedWord = await getInflectedFormAdj(randomLemma, randomForm);
 
-    const caseNames = { "FSB-KK-NFET" : "karlkyni eintölu nefnifalls, í sterkri beygingu", "FSB-KVK-NFET" : "kvenkyni eintölu nefnifalls, í sterkri beygingu", "FSB-HK-NFET" : "hvorugkyni eintölu nefnifalls, í sterkri beygingu", "FSB-KK-ÞFET" : "karlkyni eintölu þolfalls, í sterkri beygingu", "FSB-KVK-ÞFET" : "kvenkyni eintölu þolfalls, í sterkri beygingu", "FSB-HK-ÞFET" : "hvorugkyni eintölu þolfalls, í sterkri beygingu","FSB-KK-ÞGFET" : "karlkyni eintölu þágufalls, í sterkri beygingu", "FSB-KVK-ÞGFET" : "kvenkyni eintölu þágufalls, í sterkri beygingu", "FSB-HK-ÞGFET" : "hvorugkyni eintölu þágufalls, í sterkri beygingu", "FSB-KK-EFET" : "karlkyni eintölu eignarfalls, í sterkri beygingu", "FSB-KVK-EFET" : "kvenkyni eintölu eignarfalls, í sterkri beygingu", "FSB-HK-EFET" : "hvorugkyni eintölu eignarfalls, í sterkri beygingu", "FSB-KK-NFFT" : "karlkyni fleirtölu nefnifalls, í sterkri beygingu", "FSB-KVK-NFFT" : "kvenkyni fleirtölu nefnifalls, í sterkri beygingu", "FSB-HK-NFFT" : "hvorugkyni fleirtölu nefnifalls, í sterkri beygingu", "FSB-KK-ÞFFT" : "karlkyni fleirtölu þolfalls, í sterkri beygingu", "FSB-KVK-ÞFFT" : "kvenkyni fleirtölu þolfalls, í sterkri beygingu", "FSB-HK-ÞFFT" : "hvorugkyni fleirtölu þolfalls, í sterkri beygingu","FSB-KK-ÞGFFT" : "karlkyni fleirtölu þágufalls, í sterkri beygingu", "FSB-KVK-ÞGFFT" : "kvenkyni fleirtölu þágufalls, í sterkri beygingu", "FSB-HK-ÞGFFT" : "hvorugkyni fleirtölu þágufalls, í sterkri beygingu", "FSB-KK-EFFT" : "karlkyni fleirtölu eignarfalls, í sterkri beygingu", "FSB-KVK-EFFT" : "kvenkyni fleirtölu eignarfalls, í sterkri beygingu", "FSB-HK-EFFT" : "hvorugkyni fleirtölu eignarfalls, í sterkri beygingu", "FVB-KK-NFET" : "karlkyni eintölu nefnifalls, í veikri beygingu", "FVB-KVK-NFET" : "kvenkyni eintölu nefnifalls, í veikri beygingu", "FVB-HK-NFET" : "hvorugkyni eintölu nefnifalls, í veikri beygingu", "FVB-KK-ÞFET" : "karlkyni eintölu þolfalls, í veikri beygingu", "FVB-KVK-ÞFET" : "kvenkyni eintölu þolfalls, í veikri beygingu", "FVB-HK-ÞFET" : "hvorugkyni eintölu þolfalls, í veikri beygingu","FVB-KK-ÞGFET" : "karlkyni eintölu þágufalls, í veikri beygingu", "FVB-KVK-ÞGFET" : "kvenkyni eintölu þágufalls, í veikri beygingu", "FVB-HK-ÞGFET" : "hvorugkyni eintölu þágufalls, í veikri beygingu", "FVB-KK-EFET" : "karlkyni eintölu eignarfalls, í veikri beygingu", "FVB-KVK-EFET" : "kvenkyni eintölu eignarfalls, í veikri beygingu", "FVB-HK-EFET" : "hvorugkyni eintölu eignarfalls, í veikri beygingu", "FVB-KK-NFFT" : "karlkyni fleirtölu nefnifalls, í veikri beygingu", "FVB-KVK-NFFT" : "kvenkyni fleirtölu nefnifalls, í veikri beygingu", "FVB-HK-NFFT" : "hvorugkyni fleirtölu nefnifalls, í veikri beygingu", "FVB-KK-ÞFFT" : "karlkyni fleirtölu þolfalls, í veikri beygingu", "FVB-KVK-ÞFFT" : "kvenkyni fleirtölu þolfalls, í veikri beygingu", "FVB-HK-ÞFFT" : "hvorugkyni fleirtölu þolfalls, í veikri beygingu","FVB-KK-ÞGFFT" : "karlkyni fleirtölu þágufalls, í veikri beygingu", "FVB-KVK-ÞGFFT" : "kvenkyni fleirtölu þágufalls, í veikri beygingu", "FVB-HK-ÞGFFT" : "hvorugkyni fleirtölu þágufalls, í veikri beygingu", "FVB-KK-EFFT" : "karlkyni fleirtölu eignarfalls, í veikri beygingu", "FVB-KVK-EFFT" : "kvenkyni fleirtölu eignarfalls, í veikri beygingu", "FVB-HK-EFFT" : "hvorugkyni fleirtölu eignarfalls, í veikri beygingu" };
+    const caseNames = { "FSB-KK-NFET" : "kk. et. nf., í sterkri beygingu", "FSB-KVK-NFET" : "kvk. et. nf., í sterkri beygingu", "FSB-HK-NFET" : "hk. et. nf., í sterkri beygingu", "FSB-KK-ÞFET" : "kk. et. þf., í sterkri beygingu", "FSB-KVK-ÞFET" : "kvk. et. þf., í sterkri beygingu", "FSB-HK-ÞFET" : "hk. et. þf., í sterkri beygingu","FSB-KK-ÞGFET" : "kk. et. þgf., í sterkri beygingu", "FSB-KVK-ÞGFET" : "kvk. et. þgf., í sterkri beygingu", "FSB-HK-ÞGFET" : "hk. et. þgf., í sterkri beygingu", "FSB-KK-EFET" : "kk. et. ef., í sterkri beygingu", "FSB-KVK-EFET" : "kvk. et. ef., í sterkri beygingu", "FSB-HK-EFET" : "hk. et. ef., í sterkri beygingu", "FSB-KK-NFFT" : "kk. ft. nf., í sterkri beygingu", "FSB-KVK-NFFT" : "kvk. ft. nf., í sterkri beygingu", "FSB-HK-NFFT" : "hk. ft. nf., í sterkri beygingu", "FSB-KK-ÞFFT" : "kk. ft. þf., í sterkri beygingu", "FSB-KVK-ÞFFT" : "kvk. ft. þf., í sterkri beygingu", "FSB-HK-ÞFFT" : "hk. ft. þf., í sterkri beygingu","FSB-KK-ÞGFFT" : "kk. ft. þgf., í sterkri beygingu", "FSB-KVK-ÞGFFT" : "kvk. ft. þgf., í sterkri beygingu", "FSB-HK-ÞGFFT" : "hk. ft. þgf., í sterkri beygingu", "FSB-KK-EFFT" : "kk. ft. ef., í sterkri beygingu", "FSB-KVK-EFFT" : "kvk. ft. ef., í sterkri beygingu", "FSB-HK-EFFT" : "hk. ft. ef., í sterkri beygingu", "FVB-KK-NFET" : "kk. et. nf., í veikri beygingu", "FVB-KVK-NFET" : "kvk. et. nf., í veikri beygingu", "FVB-HK-NFET" : "hk. et. nf., í veikri beygingu", "FVB-KK-ÞFET" : "kk. et. þf., í veikri beygingu", "FVB-KVK-ÞFET" : "kvk. et. þf., í veikri beygingu", "FVB-HK-ÞFET" : "hk. et. þf., í veikri beygingu","FVB-KK-ÞGFET" : "kk. et. þgf., í veikri beygingu", "FVB-KVK-ÞGFET" : "kvk. et. þgf., í veikri beygingu", "FVB-HK-ÞGFET" : "hk. et. þgf., í veikri beygingu", "FVB-KK-EFET" : "kk. et. ef., í veikri beygingu", "FVB-KVK-EFET" : "kvk. et. ef., í veikri beygingu", "FVB-HK-EFET" : "hk. et. ef., í veikri beygingu", "FVB-KK-NFFT" : "kk. ft. nf., í veikri beygingu", "FVB-KVK-NFFT" : "kvk. ft. nf., í veikri beygingu", "FVB-HK-NFFT" : "hk. ft. nf., í veikri beygingu", "FVB-KK-ÞFFT" : "kk. ft. þf., í veikri beygingu", "FVB-KVK-ÞFFT" : "kvk. ft. þf., í veikri beygingu", "FVB-HK-ÞFFT" : "hk. ft. þf., í veikri beygingu","FVB-KK-ÞGFFT" : "kk. ft. þgf., í veikri beygingu", "FVB-KVK-ÞGFFT" : "kvk. ft. þgf., í veikri beygingu", "FVB-HK-ÞGFFT" : "hk. ft. þgf., í veikri beygingu", "FVB-KK-EFFT" : "kk. ft. ef., í veikri beygingu", "FVB-KVK-EFFT" : "kvk. ft. ef., í veikri beygingu", "FVB-HK-EFFT" : "hk. ft. ef., í veikri beygingu" };
 
     document.getElementById('wordquest').innerHTML = `Beygðu lýsingarorðið <em>${randomLemma}</em><br>í <strong>${caseNames[randomForm]}</strong>`;
     countsec();
@@ -378,19 +380,22 @@ async function quizverbs() {
 }
 
 function activeAbt() {
-   document.getElementById("maingame").style.display = "none";
+   document.getElementById("game1").style.display = "none";
+   document.getElementById("game2").style.display = "none";
    document.getElementById("abt").style.display = "block";
    document.getElementById("descr").style.display = "none";
 }
 
 function activeDescr() {
-    document.getElementById("maingame").style.display = "none";
+    document.getElementById("game1").style.display = "none";
+   document.getElementById("game2").style.display = "none";
     document.getElementById("abt").style.display = "none";
     document.getElementById("descr").style.display = "block";
 }
 
 function activeGame() {
-    document.getElementById("maingame").style.display = "block";
+    document.getElementById("game1").style.display = "flex";
+   document.getElementById("game2").style.display = "flex";
     document.getElementById("abt").style.display = "none";
     document.getElementById("descr").style.display = "none";
 }
