@@ -124,7 +124,14 @@ margin-left: 10px;
 
 .ter {
  display: inline-grid;
- width: 50%;
+ width: 30%;
+ vertical-align: top;
+ margin-bottom: 10px;
+}
+
+#terleft {
+ display: inline-grid;
+ width: 70%;
  vertical-align: top;
  margin-bottom: 10px;
 }
